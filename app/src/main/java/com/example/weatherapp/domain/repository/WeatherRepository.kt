@@ -1,4 +1,9 @@
 package com.example.weatherapp.domain.repository
 
-class WeatherRepository {
+
+
+interface WeatherRepository {
+
+    fun getTemp():String
+
 }

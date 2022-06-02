@@ -50,8 +50,8 @@ fun MainScreen() {
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
                 scope.launch {
-                    val temp = GetWeatherInfoUseCase().execute(CityName = CityName(textFieldState), )
-                    scaffoldState.snackbarHostState.showSnackbar("In City $temp")
+
+                    scaffoldState.snackbarHostState.showSnackbar("In City ")
                 }
 
             }) {
