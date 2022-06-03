@@ -14,12 +14,15 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.weatherapp.data.repository.WeatherRepositoryImpl
 import com.example.weatherapp.domain.models.CityName
+import com.example.weatherapp.domain.repository.WeatherRepository
 import com.example.weatherapp.domain.usecase.GetWeatherInfoUseCase
 
-@Preview
+
 @Composable
-fun MainScreen() {
+fun MainScreen(Context:Context,CityName:CityName) {
+
     val scaffoldState = rememberScaffoldState()
     var textFieldState by remember {
         mutableStateOf("")
@@ -50,8 +53,10 @@ fun MainScreen() {
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
                 scope.launch {
-
-                    scaffoldState.snackbarHostState.showSnackbar("In City ")
+                    CityName(textFieldState)
+                    val weatherRepository = WeatherRepositoryImpl(context = Context, CityName = CityName)
+                    val temp = GetWeatherInfoUseCase(weatherRepository = weatherRepository).execute()
+                    scaffoldState.snackbarHostState.showSnackbar("In City $temp")
                 }
 
             }) {

@@ -11,9 +11,9 @@ import org.json.JSONObject
 
 const val API_KEY="da440bc612f44429bae72612222105"
 
-class WeatherRepositoryImpl : WeatherRepository {
+class WeatherRepositoryImpl(private val context: Context, private val CityName:CityName) : WeatherRepository {
 
-    override fun getTemp(context:Context): String {
+    override fun getTemp(): String {
         val url = "http://api.weatherapi.com/v1/current.json?key=$API_KEY&q=$CityName&aqi=no"
         var result = "Unknow"
         val queue= Volley.newRequestQueue(context)

@@ -12,6 +12,7 @@ import org.json.JSONObject
 
 
 class GetWeatherInfoUseCase(private val weatherRepository: WeatherRepository){
-
-
+    fun execute():String {
+        return weatherRepository.getTemp()
+    }
 }
